@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSTM Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .header-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RUL Prediction Using LSTM</h1>
+        <p>
+            This project aims to predict the Remaining Useful Life (RUL) of censored filter test cycles. Training and test data are provided, each containing 35 and 20 run-to-failure cycles, respectively. The test data includes randomly right-censored run-to-failure trajectories and their RUL for prediction. The challenge is to predict RUL accurately despite varying data qualities.
+        </p>
+        <p>
+            Detailed setup descriptions and various physical filter models in literature support the data-driven models by integrating physical knowledge, leading to theory-guided data science or informed machine learning.
+        </p>
+        <img src="/static/Operation.png" alt="Header Image" class="header-image">
+        <p>
+            - Test bench records flow rate, particle feed, and differential pressure across the filter during a lifetime test.<br>
+            - Flow sensor location upstream of particle feed causes falsification, compensated by a modeled function.<br>
+            - Differential pressure sensor has a 0 to 2500 Pa measuring range.<br>
+            - Sensor connections in filter chamber designed to minimize interference.<br>
+            - Data in dataset represents corrected values.<br>
+            - Operating modes selectable via valves for flow or pressure control.<br>
+            - All life tests in dataset conducted under flow control.<br>
+            - Standardized procedure for measurements with consistent starting positions and stop criteria.<br>
+            - Parameters set in user interface before each measurement.
+        </p>
+        <img src="/static/testbench.png" alt="Header Image" class="header-image">
+        <form action="/predict" method="post">
+            <label for="differential_pressure">Enter Differential Pressure:</label><br>
+            <input type="text" id="differential_pressure" name="differential_pressure"><br><br>
+            <label for="flow_rate">Enter Flow Rate:</label><br>
+            <input type="text" id="flow_rate" name="flow_rate"><br><br>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
